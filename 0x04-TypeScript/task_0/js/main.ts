@@ -1,8 +1,8 @@
 interface Student {
-    firstname: string,
-    lastname: string,
-    age: number,
-    location: string
+    firstname: string;
+    lastname: string;
+    age: number;
+    location: string;
 }
 
 function createStudent(student: Student) {
@@ -11,34 +11,35 @@ function createStudent(student: Student) {
         lastname: student.lastname,
         age: student.age,
         location: student.location
-    }
+    };
 }
 
-const student1 = createStudent({ firstname: 'john', lastname: "charles", age: 12, location: "Nairobi"})
-const student2 = createStudent({ firstname: 'Donald', lastname: "charles", age: 32, location: "USA"})
+const student1 = createStudent({ firstname: 'john', lastname: "charles", age: 12, location: "Nairobi" });
+const student2 = createStudent({ firstname: 'Donald', lastname: "charles", age: 32, location: "USA" });
 
-const studentsList = [ student1, student2 ];
+const studentsList = [student1, student2];
 
+// Create the table
 const table = document.createElement("table");
-const trow = document.createElement("tr");
-const trow1 = document.createElement("tr");
-const tdata = document.createElement("td");
-const tdata1 = document.createElement("td");
-const tdata2 = document.createElement("td");
-const tdata3 = document.createElement("td");
 
-tdata.innerHTML = ;
-tdata1.innerHTML = ;
+// Iterate over the studentsList to create table rows
+studentsList.forEach(student => {
+    const trow = document.createElement("tr");
+    
+    const tdata = document.createElement("td");
+    const tdata1 = document.createElement("td");
 
-trow.appendChild(tdata);
-trow.appendChild(tdata1);
+    // Populate the table data
+    tdata.innerHTML = student.firstname; // First name
+    tdata1.innerHTML = student.location;  // Location
 
-table.appendChild(trow);
+    // Append the data cells to the row
+    trow.appendChild(tdata);
+    trow.appendChild(tdata1);
 
-tdata2.innerHTML = ;
-tdata3.innerHTML = ;
+    // Append the row to the table
+    table.appendChild(trow);
+});
 
-trow1.appendChild(tdata2);
-trow1.appendChild(tdata3);
-
-table.appendChild(trow1);
+// Append the table to the document body (or another container)
+document.body.appendChild(table);
