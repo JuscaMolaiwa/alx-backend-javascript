@@ -1,11 +1,13 @@
 export default function taskBlock(trueOrFalse) {
-  const task = false;   // Use const for variables that won't be reassigned
+  const task = false;
   const task2 = true;
 
+  /* eslint-disable no-unused-vars */
   if (trueOrFalse) {
-    const task = true;   // Block-scoped using const
-    const task2 = false; // Block-scoped using const
+    const task = true;
+    const task2 = false;
   }
+  /* eslint-enable no-unused-vars */
 
-  return [task, task2];  // Returns the outer-scoped task and task2
+  return [task, task2];
 }
