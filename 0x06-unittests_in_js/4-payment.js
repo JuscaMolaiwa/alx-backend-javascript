@@ -1,7 +1,11 @@
-const utils = require('./utils');
+// 4-payment.js
+const Utils = require('./utils');
 
-module.exports = function sendPaymentRequestToApi(totalAmount, totalShipping) {
-  const total = utils.calculateNumber('SUM', totalAmount, totalShipping);
-  console.log(`The total is: ${total}`);
-  return total;
-};
+function calculateTotal(a, b) {
+  const result = Utils.calculateNumber('SUM', a, b);
+  console.log(`The total is: ${result}`);
+  return result;
+}
+
+module.exports = calculateTotal;
+
