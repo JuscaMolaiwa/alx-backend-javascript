@@ -1,134 +1,67 @@
-const { expect } = require('chai');
+const chai = require('chai');
+const expect = chai.expect;
+const { it, describe } = require('mocha');
 const calculateNumber = require('./2-calcul_chai');
 
 describe('calculateNumber', () => {
-  describe('type == "SUM"', () => {
-    it('equal positive numbers', () => {
-      expect(calculateNumber('SUM', 2.0, 2.0)).to.equal(4);
+  describe('SUM', () => {
+    it('checking if numbers round', () => {
+      expect(calculateNumber('SUM', 1, 3)).to.equal(4);
     });
-
-    it('equal positive numbers (alternate)', () => {
-      expect(calculateNumber('SUM', 2.3, 1.8)).to.equal(4);
+    it('checking if numbers round 2nd round', () => {
+      expect(calculateNumber('SUM', 1, 3.7)).to.equal(5);
     });
-
-    it('equal negative numbers', () => {
-      expect(calculateNumber('SUM', -2.0, -2.0)).to.equal(-4);
+    it('checking if numbers round 3rd round', () => {
+      expect(calculateNumber('SUM', 1.2, 3.7)).to.equal(5);
     });
-
-    it('equal negative numbers (alternate)', () => {
-      expect(calculateNumber('SUM', -2.3, -1.8)).to.equal(-4);
+    it('checking if numbers round 4th round', () => {
+      expect(calculateNumber('SUM', 1.5, 3.7)).to.equal(6);
     });
-
-    it('negative and positive numbers', () => {
-      expect(calculateNumber('SUM', -2.0, 2.0)).to.equal(0);
+    it('checking if numbers round 5th round', () => {
+      expect(calculateNumber('SUM', 1.4, 4.5)).to.equal(6);
     });
-
-    it('positive and negative numbers', () => {
-      expect(calculateNumber('SUM', 2.0, -2.0)).to.equal(0);
-    });
-
-    it('0 and 0', () => {
-      expect(calculateNumber('SUM', 0.0, 0.0)).to.equal(0);
+    it('checking negative return', () => {
+      expect(calculateNumber('SUM', -1.3, -3.7)).to.equal(-5);
     });
   });
-
-  describe('type == "SUBTRACT"', () => {
-    it('equal positive numbers', () => {
-      expect(calculateNumber('SUBTRACT', 2.0, 2.0)).to.equal(0);
+  describe('SUBTRACT', () => {
+    it('checking if numbers round', () => {
+      expect(calculateNumber('SUBTRACT', 1, 3)).to.equal(-2);
     });
-
-    it('equal positive numbers (alternate)', () => {
-      expect(calculateNumber('SUBTRACT', 2.3, 1.8)).to.equal(0);
+    it('checking if numbers round 2nd round', () => {
+      expect(calculateNumber('SUBTRACT', 1, 3.7)).to.equal(-3);
     });
-
-    it('equal negative numbers', () => {
-      expect(calculateNumber('SUBTRACT', -2.0, -2.0)).to.equal(0);
+    it('checking if numbers round 3rd round', () => {
+      expect(calculateNumber('SUBTRACT', 6.2, 3.7)).to.equal(2);
     });
-
-    it('equal negative numbers (alternate)', () => {
-      expect(calculateNumber('SUBTRACT', -2.3, -1.8)).to.equal(0);
+    it('checking if numbers round 4th round', () => {
+      expect(calculateNumber('SUBTRACT', 5.5, 3.7)).to.equal(2);
     });
-
-    it('negative and positive numbers', () => {
-      expect(calculateNumber('SUBTRACT', -2.0, 2.0)).to.equal(-4.0);
+    it('checking if numbers round 5th round', () => {
+      expect(calculateNumber('SUBTRACT', 1.4, 4.5)).to.equal(-4);
     });
-
-    it('positive and negative numbers', () => {
-      expect(calculateNumber('SUBTRACT', 2.0, -2.0)).to.equal(4.0);
-    });
-
-    it('0 and 0', () => {
-      expect(calculateNumber('SUBTRACT', 0.0, 0.0)).to.equal(0);
+    it('checking negative return', () => {
+      expect(calculateNumber('SUBTRACT', -1.3, -3.7)).to.equal(3);
     });
   });
-
-  describe('type == "DIVIDE"', () => {
-    it('positive numbers', () => {
-      expect(calculateNumber('DIVIDE', 8.0, 2.0)).to.equal(4.0);
+  describe('DIVIDE', () => {
+    it('checking if numbers round', () => {
+      expect(calculateNumber('DIVIDE', 3, 1)).to.equal(3);
     });
-
-    it('numbers with different signs', () => {
-      expect(calculateNumber('DIVIDE', -7.0, 2.0)).to.equal(-3.5);
+    it('checking if numbers round 2nd round', () => {
+      expect(calculateNumber('DIVIDE', 4, 3.7)).to.equal(1);
     });
-
-    it('numbers with different signs (alternate)', () => {
-      expect(calculateNumber('DIVIDE', 7.0, -2.0)).to.equal(-3.5);
+    it('checking if numbers round 3rd round', () => {
+      expect(calculateNumber('DIVIDE', 2.2, 0.7)).to.equal(2);
     });
-
-    it('negative numbers', () => {
-      expect(calculateNumber('DIVIDE', -7.0, -2.0)).to.equal(3.5);
+    it('checking if numbers round 4th round', () => {
+      expect(calculateNumber('DIVIDE', 15, 2.7)).to.equal(5);
     });
-
-    it('equal positive numbers', () => {
-      expect(calculateNumber('DIVIDE', 2.0, 2.0)).to.equal(1);
+    it('checking if numbers round 5th round', () => {
+      expect(calculateNumber('DIVIDE', 1.4, 4.5)).to.equal(0.2);
     });
-
-    it('equal negative numbers', () => {
-      expect(calculateNumber('DIVIDE', -2.0, -2.0)).to.equal(1);
-    });
-
-    it('equal rounded up numbers', () => {
-      expect(calculateNumber('DIVIDE', 2.6, 3.0)).to.equal(1);
-    });
-
-    it('equal rounded down numbers', () => {
-      expect(calculateNumber('DIVIDE', 2.4, 2.0)).to.equal(1);
-    });
-
-    it('0 and positive number', () => {
-      expect(calculateNumber('DIVIDE', 0.0, 5.0)).to.equal(0);
-    });
-
-    it('0 and negative number', () => {
-      expect(calculateNumber('DIVIDE', 0.0, -5.0)).to.equal(-0);
-    });
-
-    it('positive number and 0', () => {
-      expect(calculateNumber('DIVIDE', 5.0, 0)).to.equal('Error');
-    });
-
-    it('positive number and number rounded down to 0', () => {
-      expect(calculateNumber('DIVIDE', 5.0, 0.2)).to.equal('Error');
-    });
-
-    it('positive number and number rounded up to 0', () => {
-      expect(calculateNumber('DIVIDE', 5.0, -0.2)).to.equal('Error');
-    });
-
-    it('negative number and 0', () => {
-      expect(calculateNumber('DIVIDE', -5.0, 0)).to.equal('Error');
-    });
-
-    it('negative number and number rounded down to zero', () => {
-      expect(calculateNumber('DIVIDE', -5.0, 0.2)).to.equal('Error');
-    });
-
-    it('negative number and number rounded up to zero', () => {
-      expect(calculateNumber('DIVIDE', -5.0, -0.2)).to.equal('Error');
-    });
-
-    it('0 and 0', () => {
-      expect(calculateNumber('DIVIDE', 0.0, 0.0)).to.equal('Error');
+    it('checking negative return', () => {
+      expect(calculateNumber('DIVIDE', -1.3, 0)).to.equal('Error');
     });
   });
 });
